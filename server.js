@@ -13,11 +13,12 @@ app.post('/analyse', async (req, res) => {
       },
       body: JSON.stringify(req.body),
     });
-    const data = await response.json();
-    res.json(data);
+    const text = await response.text();
+    console.log('Anthropic response:', text.slice(0, 300));
+    res.json(JSON.parse(text));
   } catch (err) {
-    console.error(err);
-    res.status(500).json({ error: 'Server error' });
+    console.error('Error:', err);
+    res.status(500).json({ error: 'Server error', message: String(err) });
   }
 });
 
