@@ -14,7 +14,7 @@ app.post('/analyse', async (req, res) => {
       body: JSON.stringify(req.body),
     });
     const text = await response.text();
-    console.log('Anthropic response:', text.slice(0, 300));
+    console.log('Anthropic response:', text.slice(0, 1000));
     res.json(JSON.parse(text));
   } catch (err) {
     console.error('Error:', err);
@@ -25,3 +25,4 @@ app.post('/analyse', async (req, res) => {
 app.get('/', (req, res) => res.send('EatEasy API is running'));
 
 app.listen(process.env.PORT || 3000, () => console.log('EatEasy API running'));
+
